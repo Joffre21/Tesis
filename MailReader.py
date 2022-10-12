@@ -6,6 +6,7 @@ import traceback
 import pandas as pd
 import base64
 import quopri
+import csv
 
 #Función para descodificar textos
 def encoded_words_to_text(encoded_words):
@@ -29,8 +30,7 @@ def ExtraccionCorreos(mail_direction, password, imap_server, port, folder):
         mail = imaplib.IMAP4_SSL(imap_server, port)
         mail.login(mail_direction, password)
         _, selected_mails = mail.select(folder)
-        #Seleccionar a los correos 'UNSEEN'
-        _, selected_mails = mail.search(None, 'SEEN')
+        _, selected_mails = mail.search(None, 'UNSEEN')
         for num in selected_mails[0].split():
             _, data = mail.fetch(num , '(RFC822)')
             _, bytes_data = data[0]
@@ -57,7 +57,16 @@ ExtraccionCorreos("joffre_g2013@hotmail.com", "Tikotiko16", "outlook.office365.c
 ExtraccionCorreos("elgamerplox@gmail.com", "umvesbrqizjooqkh", "imap.gmail.com", 993, "[Gmail]/Spam")
 
 
+#Escritura de datos
+with open('dataset_spam_personal.csv', 'a', encoding="UTF8") as file:
+    writer = csv.writer(file, delimiter='|')
+    for i in range(len(lista_filas)):
+        writer.writerow(lista_filas[i-1])
+    file.close()
+
+
+
 #Creación del Dataframe
-df = pd.DataFrame(lista_filas, columns=['Asunto', 'Emisor', 'Mensaje', 'Longitud', 'Spam'])
-print(df.head(26))
+df = pd.read_csv('dataset_spam_personal.csv', delimiter='|')
+print(df.head())
 print(df.size)
