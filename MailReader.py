@@ -51,9 +51,9 @@ def ExtraccionCorreos(mail_direction, password, imap_server, port, folder):
 #Variables para generar el dataset
 lista_filas = []
 
-ExtraccionCorreos("mrjofre4_joffre@hotmail.com", "youtube", "outlook.office365.com", 993, "JUNK")
+ExtraccionCorreos("mrjofre4_joffre@hotmail.com", "M@xwellSino169", "outlook.office365.com", 993, "JUNK")
 ExtraccionCorreos("joffregvz00@gmail.com", "ljirhmuztysissru", "imap.gmail.com", 993, "[Gmail]/Spam")
-ExtraccionCorreos("joffre_g2013@hotmail.com", "Tikotiko16", "outlook.office365.com", 993, "JUNK")
+ExtraccionCorreos("joffre_g2013@hotmail.com", "MaxwellSino169", "outlook.office365.com", 993, "JUNK")
 ExtraccionCorreos("elgamerplox@gmail.com", "umvesbrqizjooqkh", "imap.gmail.com", 993, "[Gmail]/Spam")
 
 
